@@ -16,7 +16,7 @@ namespace Modul_4_Task_3.Helpers
         {
             var builder = new ConfigurationBuilder();
             builder.SetBasePath(Directory.GetCurrentDirectory());
-            builder.AddJsonFile("appsettings.json");
+            builder.AddJsonFile("appconfig.json");
             var config = builder.Build();
             var connectionString = config.GetConnectionString("DefaultConnection");
 
@@ -25,7 +25,10 @@ namespace Modul_4_Task_3.Helpers
                 .UseSqlServer(connectionString)
                 .Options;
 
-
+            using (var db = new ApplicationContext(options))
+            {   
+                db.SaveChanges();
+            }
         }
     }
 }
