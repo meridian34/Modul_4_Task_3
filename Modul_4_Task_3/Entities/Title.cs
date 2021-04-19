@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modul_4_Task_3.Entities
 {
-    class Title
+    public class Title
     {
         public int TitleId { get; set; }
         public string Name { get; set; }
