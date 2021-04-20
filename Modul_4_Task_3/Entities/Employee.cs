@@ -13,7 +13,7 @@ namespace Modul_4_Task_3.Entities
 
         public DateTime HiredDate { get; set; }
 
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         public int OfficeId { get; set; }
 
