@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Threading.Tasks;
-using Modul_4_Task_3.Entities;
+﻿using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -26,7 +20,7 @@ namespace Modul_4_Task_3.Helpers
                 .Options;
 
             using (var db = new ApplicationContext(options))
-            {   
+            {
                 db.SaveChanges();
             }
         }

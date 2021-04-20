@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Modul_4_Task_3.Entities;
+﻿using Modul_4_Task_3.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -19,7 +14,7 @@ namespace Modul_4_Task_3.EntityConfigurations
             builder.Property(e => e.LastName).HasColumnName("LastName").HasMaxLength(50).IsRequired();
             builder.Property(e => e.HiredDate).HasColumnName("HiredDate").HasColumnType("datetime2").HasMaxLength(7).IsRequired();
             builder.Property(e => e.BirthDate).HasColumnName("DateOfBirth").HasColumnType("date");
-            
+
             builder.HasOne(e => e.Office)
                 .WithMany(o => o.Employees)
                 .HasForeignKey(e => e.OfficeId)
