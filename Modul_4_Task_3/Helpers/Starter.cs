@@ -19,10 +19,7 @@ namespace Modul_4_Task_3.Helpers
                 .UseSqlServer(connectionString)
                 .Options;
 
-            using (var db = new ApplicationContext(options))
-            {
-                db.SaveChanges();
-            }
+            using var db = new ApplicationContext(options);
         }
     }
 }

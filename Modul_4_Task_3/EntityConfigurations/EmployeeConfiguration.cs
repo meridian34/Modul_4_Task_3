@@ -9,10 +9,10 @@ namespace Modul_4_Task_3.EntityConfigurations
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
             builder.ToTable("Employee").HasKey(e => e.EmployeeId);
-            builder.Property(e => e.EmployeeId).HasColumnName("EmployeeId").HasColumnType("int").ValueGeneratedOnAdd();
+            builder.Property(e => e.EmployeeId).HasColumnName("EmployeeId").ValueGeneratedOnAdd();
             builder.Property(e => e.FirstName).HasColumnName("FirstName").HasMaxLength(50).IsRequired();
             builder.Property(e => e.LastName).HasColumnName("LastName").HasMaxLength(50).IsRequired();
-            builder.Property(e => e.HiredDate).HasColumnName("HiredDate").HasColumnType("datetime2").HasMaxLength(7).IsRequired();
+            builder.Property(e => e.HiredDate).HasColumnName("HiredDate").HasColumnType("datetime2").IsRequired();
             builder.Property(e => e.BirthDate).HasColumnName("DateOfBirth").HasColumnType("date");
 
             builder.HasOne(e => e.Office)
