@@ -6,11 +6,11 @@ namespace Modul_4_Task_3.Entities
     {
         public int ClientId { get; set; }
 
-        public string CompanyName { get; set; }
+        public string Name { get; set; }
 
-        public string ContactPhone { get; set; }
+        public string Country { get; set; }
 
-        public string ContactEmail { get; set; }
+        public string Email { get; set; }
 
         public string Description { get; set; }
 
