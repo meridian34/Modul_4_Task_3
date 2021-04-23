@@ -19,6 +19,30 @@ namespace Modul_4_Task_3.Migrations
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Modul_4_Task_3.Entities.Client", b =>
+                {
+                    b.Property<int>("ClientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ClientId");
+
+                    b.ToTable("Client");
+                });
+
             modelBuilder.Entity("Modul_4_Task_3.Entities.Employee", b =>
                 {
                     b.Property<int>("EmployeeId")
@@ -130,6 +154,9 @@ namespace Modul_4_Task_3.Migrations
                         .HasColumnType("money")
                         .HasColumnName("Budget");
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -141,6 +168,8 @@ namespace Modul_4_Task_3.Migrations
                         .HasColumnName("StartedDate");
 
                     b.HasKey("ProjectId");
+
+                    b.HasIndex("ClientId");
 
                     b.ToTable("Project");
                 });
@@ -169,13 +198,13 @@ namespace Modul_4_Task_3.Migrations
                     b.HasOne("Modul_4_Task_3.Entities.Office", "Office")
                         .WithMany("Employees")
                         .HasForeignKey("OfficeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Modul_4_Task_3.Entities.Title", "Title")
                         .WithMany("Employees")
                         .HasForeignKey("TitleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Office");
@@ -188,18 +217,34 @@ namespace Modul_4_Task_3.Migrations
                     b.HasOne("Modul_4_Task_3.Entities.Employee", "Employee")
                         .WithMany("EmployeeProjects")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Modul_4_Task_3.Entities.Project", "Project")
                         .WithMany("EmployeeProjects")
                         .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Employee");
 
                     b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("Modul_4_Task_3.Entities.Project", b =>
+                {
+                    b.HasOne("Modul_4_Task_3.Entities.Client", "Client")
+                        .WithMany("Projects")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
+            modelBuilder.Entity("Modul_4_Task_3.Entities.Client", b =>
+                {
+                    b.Navigation("Projects");
                 });
 
             modelBuilder.Entity("Modul_4_Task_3.Entities.Employee", b =>

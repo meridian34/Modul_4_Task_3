@@ -18,12 +18,12 @@ namespace Modul_4_Task_3.EntityConfigurations
             builder.HasOne(e => e.Office)
                 .WithMany(o => o.Employees)
                 .HasForeignKey(e => e.OfficeId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(e => e.Title)
                 .WithMany(t => t.Employees)
                 .HasForeignKey(e => e.TitleId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
