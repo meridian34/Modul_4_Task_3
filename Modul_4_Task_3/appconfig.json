@@ -1,5 +1,5 @@
 ﻿{
   "ConnectionStrings": {
-    "DefaultConnection": "Server=ECOTEST-ADM-A\\SQLEXPRESS;Database=Modul_4_Task_3;Integrated Security=True"
+    "DefaultConnection": "Server=DESKTOP-I2Q2DPV\\SQLEXPRESS01;Database=Modul_4_Task_3;Integrated Security=True"
   }
 }
