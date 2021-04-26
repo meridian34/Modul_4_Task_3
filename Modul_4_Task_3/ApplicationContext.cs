@@ -9,8 +9,6 @@ namespace Modul_4_Task_3
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
         }
 
         public DbSet<Employee> Employees { get; set; }
@@ -23,6 +21,8 @@ namespace Modul_4_Task_3
 
         public DbSet<EmployeeProject> EmployeeProjects { get; set; }
 
+        public DbSet<Client> Clients { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
@@ -30,6 +30,7 @@ namespace Modul_4_Task_3
             modelBuilder.ApplyConfiguration(new TitleConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeProjectConfiguration());
+            modelBuilder.ApplyConfiguration(new ClientConfiguration());
         }
     }
 }
