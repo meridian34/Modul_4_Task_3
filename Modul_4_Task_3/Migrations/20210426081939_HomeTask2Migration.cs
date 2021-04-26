@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace Modul_4_Task_3.Migrations
 {
@@ -29,6 +30,30 @@ namespace Modul_4_Task_3.Migrations
                     table.PrimaryKey("PK_Client", x => x.ClientId);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Client",
+                columns: new[] { "ClientId", "Name", "Country", "Email", "Description" },
+                values: new object[,]
+                {
+                    {1, "Roga&Kopyta", "Ukraine", "1@gmai.com", "adgasdgasdf" },
+                    {2, "RMC", "Ukraine","2@gmail.com","afasfafasf" },
+                    {3,"3","USA","3@gmail.com", null },
+                    {4,"4","USA","4@gmail.com","12345" },
+                    {5, "5","USA","5@gmail.com", "098765"}
+                });
+
+            migrationBuilder.InsertData(
+                table: "Project",
+                columns: new[] { "Name", "Budget", "StartedDate", "ClientId" },
+                values: new object[,]
+                {
+                    { "Roga&Kopyta_Project", 1230000, new DateTime(2020, 8, 3, 0, 0, 0, 0), 1 },
+                    { "RMC_Project", 200000, new DateTime(2020, 12, 22, 0, 0, 0, 0), 2 },
+                    { "3_Project", 45000, new DateTime(2021, 8, 15, 0, 0, 0, 0), 3 },
+                    { "4_Project", 10000, new DateTime(2021, 9, 3, 0, 0, 0, 0), 4 },
+                    { "5_Project", 9000000, new DateTime(2023, 8, 3, 0, 0, 0, 0), 5 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Project_ClientId",
                 table: "Project",
@@ -55,6 +80,18 @@ namespace Modul_4_Task_3.Migrations
             migrationBuilder.DropIndex(
                 name: "IX_Project_ClientId",
                 table: "Project");
+
+            migrationBuilder.DeleteData(
+                table: "Project",
+                keyColumns: new[] { "Name", "Budget", "StartedDate" },
+                keyValues: new object[,]
+                {
+                    { "Roga&Kopyta_Project", 1230000, new DateTime(2020, 8, 3, 0, 0, 0, 0) },
+                    { "RMC_Project", 200000, new DateTime(2020, 12, 22, 0, 0, 0, 0) },
+                    { "3_Project", 45000, new DateTime(2021, 8, 15, 0, 0, 0, 0) },
+                    { "4_Project", 10000, new DateTime(2021, 9, 3, 0, 0, 0, 0) },
+                    { "5_Project", 9000000, new DateTime(2023, 8, 3, 0, 0, 0, 0) }
+                });
 
             migrationBuilder.DropColumn(
                 name: "ClientId",
