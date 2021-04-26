@@ -13,6 +13,10 @@ namespace Modul_4_Task_3.Entities
 
         public DateTime StartedDate { get; set; }
 
+        public int ClientId { get; set; }
+
+        public Client Client { get; set; }
+
         public List<EmployeeProject> EmployeeProjects { get; set; } = new List<EmployeeProject>();
     }
 }
