@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Modul_4_Task_3.Migrations
 {
@@ -35,11 +35,11 @@ namespace Modul_4_Task_3.Migrations
                 columns: new[] { "ClientId", "Name", "Country", "Email", "Description" },
                 values: new object[,]
                 {
-                    {1, "Roga&Kopyta", "Ukraine", "1@gmai.com", "adgasdgasdf" },
-                    {2, "RMC", "Ukraine","2@gmail.com","afasfafasf" },
-                    {3,"3","USA","3@gmail.com", null },
-                    {4,"4","USA","4@gmail.com","12345" },
-                    {5, "5","USA","5@gmail.com", "098765"}
+                    { 1, "Roga&Kopyta", "Ukraine", "1@gmai.com", "adgasdgasdf" },
+                    { 2, "RMC", "Ukraine", "2@gmail.com", "afasfafasf" },
+                    { 3, "3", "USA", "3@gmail.com", null },
+                    { 4, "4", "USA", "4@gmail.com", "12345" },
+                    { 5, "5", "USA", "5@gmail.com", "098765" }
                 });
 
             migrationBuilder.InsertData(
