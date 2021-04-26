@@ -16,12 +16,12 @@ namespace Modul_4_Task_3.EntityConfigurations
             builder.HasOne(ep => ep.Employee)
                 .WithMany(e => e.EmployeeProjects)
                 .HasForeignKey(ep => ep.EmployeeId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(ep => ep.Project)
                 .WithMany(p => p.EmployeeProjects)
                 .HasForeignKey(ep => ep.ProjectId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
