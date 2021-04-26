@@ -138,20 +138,6 @@ namespace Modul_4_Task_3.Migrations
                 name: "FK_Project_Client_ClientId",
                 table: "Project");
 
-            
-
-            migrationBuilder.DeleteData(
-                table: "Project",
-                keyColumns: new[] { "Name", "Budget", "StartedDate" },
-                keyValues: new object[,]
-                {
-                    {"Roga&Kopyta_Project", 1230000, new DateTime(2020, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)},
-                    {"RMC_Project", 200000,new DateTime(2020, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)},
-                    {"3_Project",45000,new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)},
-                    {"4_Project",10000,new DateTime(2021, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)},
-                    {"5_Project",9000000,new DateTime(2023, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified)}
-                });
-
             migrationBuilder.DropTable(
                 name: "Client");
 
