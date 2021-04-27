@@ -1,6 +1,8 @@
-﻿using Modul_4_Task_3.Entities;
+﻿using System;
+using Modul_4_Task_3.Entities;
 using Modul_4_Task_3.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Modul_4_Task_3
 {
@@ -22,6 +24,11 @@ namespace Modul_4_Task_3
         public DbSet<EmployeeProject> EmployeeProjects { get; set; }
 
         public DbSet<Client> Clients { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging().LogTo(Console.WriteLine, LogLevel.Debug);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
