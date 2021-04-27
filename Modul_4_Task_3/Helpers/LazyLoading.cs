@@ -58,14 +58,14 @@ namespace Modul_4_Task_3.Helpers
 
                     foreach (var i in leftJoin)
                     {
-                        if (i.proj.Name == "Roga&Kopyta_Project4")
+                        if (i.proj.Name == "Roga&Kopyta_Project5")
                         {
-                            i.proj.Name = "Roga&Kopyta_Project5";
+                            i.proj.Name = "Roga&Kopyta_Project6";
                         }
 
                         if (i.cl.ClientId == 1)
                         {
-                            i.cl.Description = "Updated5";
+                            i.cl.Description = "Updated6";
                         }
                     }
 
@@ -87,7 +87,7 @@ namespace Modul_4_Task_3.Helpers
 
             EmployeeProject ep = new EmployeeProject();
             ep.EmployeeId = _context.Employees.Where(e => (e.FirstName == "test") && (e.LastName == "test")).FirstOrDefault().EmployeeId;
-            ep.ProjectId = _context.Projects.Where(p => p.Name == "Roga&Kopyta_Project5").FirstOrDefault().ProjectId;
+            ep.ProjectId = _context.Projects.Where(p => p.Name == "Roga&Kopyta_Project").FirstOrDefault().ProjectId;
             ep.Rate = 50000;
             ep.StartedDate = DateTime.Now;
             _context.EmployeeProjects.Add(ep);
