@@ -21,13 +21,13 @@ namespace Modul_4_Task_3.Helpers
 
             using (var db = new ApplicationContext(options))
             {
-
                 LazyLoading lazyLoading = new LazyLoading(db);
                 //lazyLoading.FirstLINQTask();
                 //lazyLoading.SecondLINQTask();
                 //lazyLoading.ThirdLINQTask();
                 //lazyLoading.FourthLinqTask();
-                lazyLoading.FifthLinqTask();
+                //lazyLoading.FifthLinqTask();
+                //lazyLoading.SixthLinqTask();
             }
 
         }

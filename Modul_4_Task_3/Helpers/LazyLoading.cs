@@ -1,11 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore;
 using Modul_4_Task_3.Entities;
 
 namespace Modul_4_Task_3.Helpers
@@ -28,20 +24,21 @@ namespace Modul_4_Task_3.Helpers
                            join ep in _context.EmployeeProjects on proj.ProjectId equals ep.ProjectId
                            into Group2
                            from Ep in Group2.DefaultIfEmpty()
-                           select new { proj, Cl , Ep};
+                           select new { proj, Cl, Ep };
 
             foreach (var i in leftJoin)
             {
                 string rate = i.Ep is null ? "null" : i.Ep.Rate.ToString();
-                Console.WriteLine(@$"{i.proj.Name}  {i.Cl.Name}  {rate}");              
+                Console.WriteLine(@$"{i.proj.Name}  {i.Cl.Name}  {rate}");
             }
         }
 
         public void SecondLINQTask()
         {
-            
-            var diff = _context.Employees.Select(e => SqlServerDbFunctionsExtensions.DateDiffDay(null, e.HiredDate, DateTime.Now)).OrderBy(e => e);
-            foreach(var i in diff)
+            var diff = _context.Employees
+                                         .Select(e => SqlServerDbFunctionsExtensions.DateDiffDay(null, e.HiredDate, DateTime.Now))
+                                         .OrderBy(e => e);
+            foreach (var i in diff)
             {
                 Console.WriteLine(i);
             }
@@ -49,16 +46,15 @@ namespace Modul_4_Task_3.Helpers
 
         public void ThirdLINQTask()
         {
-            using(var trans = _context.Database.BeginTransaction())
+            using (var trans = _context.Database.BeginTransaction())
             {
                 try
                 {
                     var leftJoin = _context.Projects
                            .Join(_context.Clients,
-                                       proj => proj.ClientId,
-                                       cl => cl.ClientId,
-                                       (proj, cl) => new { proj, cl }
-                                       );
+                                 proj => proj.ClientId,
+                                 cl => cl.ClientId,
+                                 (proj, cl) => new { proj, cl });
 
                     foreach (var i in leftJoin)
                     {
@@ -66,11 +62,13 @@ namespace Modul_4_Task_3.Helpers
                         {
                             i.proj.Name = "Roga&Kopyta_Project5";
                         }
+
                         if (i.cl.ClientId == 1)
                         {
                             i.cl.Description = "Updated5";
                         }
                     }
+
                     _context.SaveChanges();
                     trans.Commit();
                 }
@@ -79,9 +77,6 @@ namespace Modul_4_Task_3.Helpers
                     trans.Rollback();
                 }
             }
-           
-
-            
         }
 
         public void FourthLinqTask()
@@ -91,7 +86,7 @@ namespace Modul_4_Task_3.Helpers
             _context.SaveChanges();
 
             EmployeeProject ep = new EmployeeProject();
-            ep.EmployeeId = _context.Employees.Where(e => (e.FirstName == "test")&&(e.LastName == "test")).FirstOrDefault().EmployeeId;           
+            ep.EmployeeId = _context.Employees.Where(e => (e.FirstName == "test") && (e.LastName == "test")).FirstOrDefault().EmployeeId;
             ep.ProjectId = _context.Projects.Where(p => p.Name == "Roga&Kopyta_Project5").FirstOrDefault().ProjectId;
             ep.Rate = 50000;
             ep.StartedDate = DateTime.Now;
@@ -104,11 +99,28 @@ namespace Modul_4_Task_3.Helpers
             var emp = _context.Employees.Where(e => (e.FirstName == "test") && (e.LastName == "test")).FirstOrDefault();
             var eps = _context.EmployeeProjects.Where(epro => epro.EmployeeId == emp.EmployeeId);
             _context.Employees.Remove(emp);
-            foreach(var i in eps)
+            foreach (var i in eps)
             {
                 _context.EmployeeProjects.Remove(i);
             }
+
             _context.SaveChanges();
+        }
+
+        public void SixthLinqTask()
+        {
+            var employees2 = from emp in _context.Employees
+                             join title in _context.Titles on emp.TitleId equals title.TitleId
+                             orderby emp.TitleId
+                             select new
+                             {
+                                 Title = title.Name.Contains("a") ? title.Name : title.TitleId.ToString()
+                             };
+
+            foreach (var i in employees2)
+            {
+                Console.WriteLine(i.Title);
+            }
         }
     }
 }
